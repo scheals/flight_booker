@@ -3,4 +3,12 @@ class Flight < ApplicationRecord
   belongs_to :destination, class_name: 'Airport'
 
   validates :origin_id, presence: true, uniqueness: { scope: %i[destination_id date] }
+
+  def short_date
+    date.to_fs(:short)
+  end
+
+  def trim_milliseconds
+    date.to_i
+  end
 end
