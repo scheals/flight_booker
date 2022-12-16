@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin_id: one
+  destination_id: one
+  date: 2022-12-16 13:14:07
+  duration: 1
+
+two:
+  origin_id: two
+  destination_id: two
+  date: 2022-12-16 13:14:07
+  duration: 1
