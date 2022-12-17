@@ -2,6 +2,6 @@ class FlightsController < ApplicationController
   def index
     @ordered_airports = Airport.all.order(:name)
     @flights = Flight.all
-    @unique_flight_days = @flights.select(:date).order(:date).uniq(&:trim_milliseconds)
+    @unique_flight_dates = @flights.unique_flight_dates
   end
 end
