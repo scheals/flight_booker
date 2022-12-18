@@ -19,8 +19,22 @@
 
   <div>
     <label for='date'>When are you flying?</label>
-    <%= form.collection_select :date, @unique_flight_dates, :date, :short_date %>
+    <%= form.collection_select :date, @unique_flight_dates, :numeric_date, :short_date %>
   </div>
 
   <%= form.submit 'Search' %>
+<% end %>
+
+<% if @search_results %>
+  <ul>
+    <% @search_results.each do |result| %>
+      <li>
+        From: <%= result.origin.name %> To: <%= result.destination.name %> Date: <%= result.date.to_fs %>
+      </li>
+    <% end %>
+  </ul>
+  <% else %>
+    <div>
+      <p>No matches found.</p>
+    </div>
 <% end %>
