@@ -19,7 +19,7 @@
 
   <div>
     <label for='date'>When are you flying?</label>
-    <%= form.collection_select :date, @unique_flight_dates, :numeric_date, :short_date %>
+    <%= form.collection_select :date, @unique_flight_dates, :date_without_time, :short_date %>
   </div>
 
   <%= form.submit 'Search' %>
@@ -29,7 +29,7 @@
   <ul>
     <% @search_results.each do |result| %>
       <li>
-        From: <%= result.origin.name %> To: <%= result.destination.name %> Date: <%= result.date.to_fs %>
+        From: <%= result.origin.name %> To: <%= result.destination.name %> Date: <%= result.date.to_fs(:long_ordinal) %>
       </li>
     <% end %>
   </ul>

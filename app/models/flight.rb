@@ -6,7 +6,7 @@ class Flight < ApplicationRecord
 
   validates :origin_id, presence: true, uniqueness: { scope: %i[destination_id date] }
 
-  scope :unique_flight_dates, -> { select(:date).order(:date).uniq(&:numeric_date) }
+  scope :unique_flight_dates, -> { select(:date).order(:date).uniq(&:date_without_time) }
   scope :matching_routes, ->(origin, destination) { where(origin_id: origin, destination_id: destination) }
   scope :matching_flights_for_date, ->(flights, date) { flights&.select { |flight| flight.matching_date?(date) } }
 
@@ -14,11 +14,11 @@ class Flight < ApplicationRecord
     date.to_fs(:short)
   end
 
-  def numeric_date
-    date.to_i
+  def date_without_time
+    date.to_date.to_fs(:db)
   end
 
   def matching_date?(other_date)
-    date.to_i == other_date.to_i
+    date_without_time == other_date
   end
 end
