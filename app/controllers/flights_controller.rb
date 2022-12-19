@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FlightsController < ApplicationController
   def index
     @ordered_airports = Airport.all.order(:name)

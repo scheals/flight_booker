@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -29,5 +31,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_121407) do
     t.datetime "updated_at", null: false
     t.index ["origin_id", "destination_id", "date"], name: "index_flights_on_origin_id_and_destination_id_and_date", unique: true
   end
-
 end
