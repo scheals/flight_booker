@@ -13,6 +13,6 @@ class FlightsController < ApplicationController
   def find_flights
     @flights = Flight.all
     @search_results = @flights.matching_flights_for_date(@flights.matching_routes(params[:origin_id], params[:destination_id]), params[:date])
-    redirect_to root_path(search_results: @search_results)
+    redirect_to root_path(search_results: @search_results, passengers: params[:passengers])
   end
 end

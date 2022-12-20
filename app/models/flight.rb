@@ -21,4 +21,8 @@ class Flight < ApplicationRecord
   def matching_date?(other_date)
     date_without_time == other_date
   end
+
+  def to_radio
+    "From: #{origin.name} To: #{destination.name} Date: #{short_date}"
+  end
 end

@@ -26,13 +26,16 @@
 <% end %>
 
 <% if @search_results %>
-  <ul>
-    <% @search_results.each do |result| %>
-      <li>
-        From: <%= result.origin.name %> To: <%= result.destination.name %> Date: <%= result.date.to_fs(:long_ordinal) %>
-      </li>
-    <% end %>
-  </ul>
+  <%= form_with url:'/flights/bookings', method: :get do |form|  %>
+    <div style= "display: flex; flex-direction: column;">
+    <%= collection_radio_buttons :flight, :id, @search_results, :id, :to_radio do |b|
+      b.label { b.radio_button + b.text }
+    end
+    %>
+    </div>
+    <%= hidden_field_tag :passengers, params[:passengers]  %>
+    <%= form.submit 'Pick flight' %>
+  <% end %>
   <% else %>
     <div>
       <p>No matches found.</p>
