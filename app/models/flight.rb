@@ -5,6 +5,9 @@ class Flight < ApplicationRecord
   belongs_to :destination, class_name: "Airport"
 
   validates :origin_id, presence: true, uniqueness: { scope: %i[destination_id date] }
+  validates :destination_id, presence: true
+  validates :date, presence: true
+  validates :duration, presence: true
 
   scope :unique_flight_dates, -> { select(:date).order(:date).uniq(&:date_without_time) }
   scope :matching_routes, ->(origin, destination) { where(origin_id: origin, destination_id: destination) }
