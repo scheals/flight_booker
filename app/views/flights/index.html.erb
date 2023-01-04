@@ -28,10 +28,12 @@
 <% if @search_results %>
   <%= form_with url:'/flights/bookings', method: :get do |form|  %>
     <div style= "display: flex; flex-direction: column;">
-    <%= collection_radio_buttons :flight, :id, @search_results, :id, :to_radio do |b|
-      b.label { b.radio_button + b.text }
-    end
-    %>
+    <%= collection_radio_buttons :flight, :id, @search_results, :id, :to_radio do |b| %>
+      <div>
+        <%= b.label %>
+        <%= b.radio_button %>
+      </div>
+    <% end %>
     </div>
     <%= hidden_field_tag :passengers, params[:passengers]  %>
     <%= form.submit 'Pick flight' %>
