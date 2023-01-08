@@ -17,6 +17,11 @@ class BookingsController < ApplicationController
         return redirect_to flights_bookings_new_url(flight_id: @flight.id, passengers: @passengers.keys.length), status: :unprocessable_entity
       end
     end
-    redirect_to root_url
+    redirect_to @booking
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
+    @flight = @booking.flight
   end
 end

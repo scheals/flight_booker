@@ -1,0 +1,12 @@
+<h1>Bookings#show</h1>
+<p>Find me in app/views/bookings/show.html.erb</p>
+
+<h2>Booking <%= @booking.id %></h2>
+<h3>Flight information:</h3>
+<p>Departing from: <%= @flight.origin.name%> </p>
+<p>Destination: <%= @flight.destination.name%> </p>
+<p>Your flight date: <%=  @flight.date %></p>
+<h3>Passengers:</h3>
+<% @booking.passengers.each do |passenger| %>
+  <p> <%= passenger.name %> <%= passenger.email %></p>
+<% end %>
