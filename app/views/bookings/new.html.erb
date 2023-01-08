@@ -5,7 +5,7 @@
 <p>Destination: <%= @flight.destination.name%> </p>
 <p>Your flight date: <%=  @flight.date %></p>
 
-<form action="/flights/bookings" method="post">
+<form action="/bookings" method="post">
   <input type="hidden" name="flight_id" value= <%= @flight.id %>>
   <% @passengers.to_i.times do |i| %>
     <h3>Passenger <%= i + 1 %></h3>
