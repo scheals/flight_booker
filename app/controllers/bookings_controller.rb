@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
 
   def create
     @flight = Flight.find(params[:flight_id].to_i)
-    @passengers = passenger_params
+    @passengers = params[:passengers]
     @booking = @flight.bookings.build
     @booking.save
     @passengers.each do |passenger|
