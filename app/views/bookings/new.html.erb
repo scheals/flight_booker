@@ -1,0 +1,19 @@
+<h1>Bookings#new</h1>
+<p>Find me in app/views/bookings/new.html.erb</p>
+
+<p>Departing from: <%= @flight.origin.name%> </p>
+<p>Destination: <%= @flight.destination.name%> </p>
+<p>Your flight date: <%=  @flight.date %></p>
+
+<form action="/flights/bookings" method="post">
+  <input type="hidden" name="flight_id" value= <%= @flight.id %>>
+  <% @passengers.to_i.times do |i| %>
+    <h3>Passenger <%= i + 1 %></h3>
+    <label for=<%= "passengers_#{i.to_s}_name" %>>What is your name?</label>
+    <input type="text" name= <%= "passengers[#{i.to_s}][name]" %> id=<%= "passengers_#{i.to_s}_name" %>>
+    <label for=<%= "passengers_#{i.to_s}_email" %>>What is your email?</label>
+    <input type="email" name=<%= "passengers[#{i.to_s}][email]" %> id=<%= "passengers_#{i.to_s}_email" %>>
+  <% end %>
+  <br/>
+  <input type="submit" name="commit" value="Book flight" data-disable-with="Book flight">
+</form>
