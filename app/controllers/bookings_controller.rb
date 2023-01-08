@@ -16,9 +16,11 @@ class BookingsController < ApplicationController
         next
       else
         @booking.delete
+        flash[:error] = "Something went wrong."
         return redirect_to new_booking_url(flight_id: @flight.id, passengers: @passengers.keys.length), status: :unprocessable_entity
       end
     end
+    flash[:success] = "Successfully booked #{@flight.origin} to #{@flight.destination} on #{@flight.short_date}."
     redirect_to @booking
   end
 
