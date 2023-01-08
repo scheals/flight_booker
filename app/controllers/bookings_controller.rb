@@ -2,11 +2,13 @@ class BookingsController < ApplicationController
   def new
     @flight = Flight.find(params[:flight][:id].to_i)
     @passengers = params[:passengers]
+    @booking = @flight.bookings.build
+    @booking.passengers.build
   end
 
   def create
-    @flight = Flight.find(params[:flight_id].to_i)
-    @passengers = params[:passengers]
+    @flight = Flight.find(booking_params[:flight_id])
+    @passengers = booking_params[:passengers_attributes]
     @booking = @flight.bookings.build
     @booking.save
     @passengers.each do |passenger|
@@ -14,7 +16,7 @@ class BookingsController < ApplicationController
         next
       else
         @booking.delete
-        return redirect_to flights_bookings_new_url(flight_id: @flight.id, passengers: @passengers.keys.length), status: :unprocessable_entity
+        return redirect_to new_booking_url(flight_id: @flight.id, passengers: @passengers.keys.length), status: :unprocessable_entity
       end
     end
     redirect_to @booking
@@ -23,5 +25,11 @@ class BookingsController < ApplicationController
   def show
     @booking = Booking.find(params[:id])
     @flight = @booking.flight
+  end
+
+  private
+
+  def booking_params
+    params.require(:booking).permit(:flight_id, passengers_attributes: [:name, :email])
   end
 end
