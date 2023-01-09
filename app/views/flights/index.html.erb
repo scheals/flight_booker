@@ -25,7 +25,7 @@
   <%= form.submit 'Search' %>
 <% end %>
 
-<% if @search_results %>
+<% unless @search_results.empty? %>
   <%= form_with url:'/bookings/new', method: :get do |form|  %>
     <div style= "display: flex; flex-direction: column;">
     <%= collection_radio_buttons :flight, :id, @search_results, :id, :to_radio do |b| %>
