@@ -26,9 +26,15 @@ Previous project, Private Events for sure helped me understand what associations
 
 This journey is rough but I'm going to keep on keeping on!
 
+### Update after Stimulus improvement
+
+While I worked there was an embarassing amount of syntax errors that I've committed, shame you can't enjoy some kind of sensible feedback besides things not working like you want them to.
+That's the beauty and ugliness of `data-attributes` flexibility, I guess. If you do `data-target-controller` instead of `data-controller-target` you'll just have things not work correctly.
+I am super interested in Stimulus but I feel like in this case using Turbo would be easier & more sensible given the problems I had to solve. Also it is kind of funny to be using stuff that
+I have not yet encountered in JS like `static` keyword, all the `extending` and `this`.
+
 ## Features
 - You can book one-way flights between two airports.
 - If there are multiple flights on a specific date, you can pick a flight departing at specific time.
-- Booking handles up to 4 passengers.
+- Booking handles dynamic amount of passengers, add and remove passengers thanks to Stimulus!
 - You can view bookings after they're done.
-
