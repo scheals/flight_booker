@@ -27,15 +27,15 @@ export default class extends Controller {
     return this.templateClone
   }
 
-  setPassengerHeader(clone, passengerNumber) {
-    this.header = clone.querySelector('h3')
+  setPassengerHeader(element, passengerNumber) {
+    this.header = element.querySelector('h3')
     this.header.textContent = `Passenger ${passengerNumber}`
-    return clone
+    return element
   }
 
-  setPassengerAttributes(clone, paramIndex) {
-    this.labels = clone.querySelectorAll('div>div>label')
-    this.inputs = clone.querySelectorAll('div>div>input')
+  setPassengerAttributes(element, paramIndex) {
+    this.labels = element.querySelectorAll('div>div>label')
+    this.inputs = element.querySelectorAll('div>div>input')
     this.idAttribute = `booking_passengers_attributes_${paramIndex}`
     this.paramAttribute = `booking[passengers_attributes][${paramIndex}]`
     this.labels[0].setAttribute('for', `${paramIndex}_name`)
@@ -44,6 +44,6 @@ export default class extends Controller {
     this.labels[1].setAttribute('for', `${paramIndex}_email`)
     this.inputs[1].setAttribute('id', `${this.idAttribute}_email`)
     this.inputs[1].setAttribute('name', `${this.paramAttribute}[email]`)
-    return clone
+    return element
   }
 }
