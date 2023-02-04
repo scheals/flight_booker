@@ -18,6 +18,7 @@
           <%= sub_form.label :email %>
           <%= sub_form.email_field :email %>
         </div>
+        <button data-action='click->passengers#remove'>Remove passenger</button>
     </div>
     <% end %>
   <% end %>
@@ -29,7 +30,7 @@
 
 
 <template id='passengerTemplate'>
-  <div data-target-passengers="passenger">
+  <div data-passengers-target="passenger">
       <h3>Passenger</h3>
         <div>
           <label for="booking_passengers_attributes_0_name">Name</label>
@@ -39,5 +40,6 @@
           <label for="booking_passengers_attributes_0_email">Email</label>
           <input type="email" name="booking[passengers_attributes][0][email]" id="booking_passengers_attributes_0_email">
         </div>
+        <button data-action='click->passengers#remove'>Remove passenger</button>
     </div>
 </template>
