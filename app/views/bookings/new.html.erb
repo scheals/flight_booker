@@ -4,22 +4,40 @@
 <p>Destination: <%= @flight.destination.name%> </p>
 <p>Your flight date: <%=  @flight.date %></p>
 
-<%= form_with model: @booking do |form| %>
+<%= form_with model: @booking, data: { controller: 'passengers', passengers_amount_value: @passengers.to_i } do |form| %>
   <%= form.hidden_field :flight_id, value: @flight.id %>
   <% @passengers.to_i.times do |i| %>
-    <h3>Passenger <%= i + 1 %></h3>
-    <%= form.fields_for :passengers do |sub_form| %>
-      <div>
-        <%= sub_form.label :name %>
-        <%= sub_form.text_field :name %>
-      </div>
-      <div>
-        <%= sub_form.label :email %>
-        <%= sub_form.email_field :email %>
-      </div>
+    <div data-passengers-target = 'passenger'>
+      <h3>Passenger <%= i + 1 %></h3>
+      <%= form.fields_for :passengers do |sub_form| %>
+        <div>
+          <%= sub_form.label :name %>
+          <%= sub_form.text_field :name %>
+        </div>
+        <div>
+          <%= sub_form.label :email %>
+          <%= sub_form.email_field :email %>
+        </div>
+    </div>
     <% end %>
   <% end %>
+  <button data-action='click->passengers#add'>Add passenger</button>
   <%= form.submit 'Book flight' %>
 <% end %>
 
 <p><%= link_to 'Find flights', flights_path  %></p>
+
+
+<template id='passengerTemplate'>
+  <div data-target-passengers="passenger">
+      <h3>Passenger</h3>
+        <div>
+          <label for="booking_passengers_attributes_0_name">Name</label>
+          <input type="text" name="booking[passengers_attributes][0][name]" id="booking_passengers_attributes_0_name">
+        </div>
+        <div>
+          <label for="booking_passengers_attributes_0_email">Email</label>
+          <input type="email" name="booking[passengers_attributes][0][email]" id="booking_passengers_attributes_0_email">
+        </div>
+    </div>
+</template>

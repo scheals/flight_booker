@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
     @booking = @flight.bookings.build
     @booking.save
     @passengers.each do |passenger|
-      if @booking.passengers.build(name: passenger[1][:name], email: passenger[1][:email]).save
+      if @booking.passengers.build(name: passenger[1][:name], email: passenger[1][:email]).save!
         next
       else
         @booking.delete
