@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to scheals' Flight Booker, <%= @passenger.name %></h1>
+    <p>
+      You have successfully booked a flight to <%= @booking.flight.destination.name %> from <%= @booking.flight.origin.name %> on <%= @booking.flight.short_date %>!
+    </p>
+    <p>
+      To see your booking, follow this link: <%= booking_url(@booking) %>.
+    </p>
+    <p>Thanks for booking and have a great day!</p>
+  </body>
+</html>

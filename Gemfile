@@ -70,6 +70,7 @@ group :development do
   gem "rubocop-rails", require: false
   gem "rubocop-performance", require: false
   gem 'database_consistency', require: false
+  gem "letter_opener"
 end
 
 group :test do
