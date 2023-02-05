@@ -1,0 +1,7 @@
+Welcome to scheals' Flight Booker, <%= @passenger.name %>!
+==========================================================
+You have successfully booked a flight to <%= @booking.flight.destination.name %> from <%= @booking.flight.origin.name %> on <%= @booking.flight.short_date %>!
+
+To see your booking, follow this link: <%= booking_url(@booking) %>
+
+Thanks for booking and have a great day!
