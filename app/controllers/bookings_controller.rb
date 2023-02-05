@@ -20,6 +20,7 @@ class BookingsController < ApplicationController
         return redirect_to new_booking_url(flight_id: @flight.id, passengers: @passengers.keys.length), status: :unprocessable_entity
       end
     end
+    @booking.passengers.each { |passenger| PassengerMailer.with(passenger:, booking: @booking).confirmation_email.deliver_later }
     flash[:success] = "Successfully booked #{@flight.origin.name} to #{@flight.destination.name} on #{@flight.short_date}."
     redirect_to @booking
   end
